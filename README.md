@@ -13,7 +13,7 @@ On top of its previous functionality, our `Building` class now has several usefu
  - A handy `showOptions()` method to tell the user what options are available
  - A few additional class attributes (feel free to explore) 
  
-## Phase 0: Swapping Out `Building.java`
+## Phase 0: Swapping Out `Building.java` DONE
 First things first: replace the original `Building` class from [A7: Use What Your Parent (Class) Gave You](https://github.com/jcrouser/CSC120-A6) with the expanded version contained in this repo, and make sure that your implementations of `House.java`, `Library.java`, and `Cafe.java` still work as expected.
 
 ## Phase 1: Overriding Methods
@@ -21,10 +21,10 @@ The `Building` class provides a lot of useful functionality, but some of it does
 
 _Hint: use `super` whenever possible to avoid duplicating code!_
 
-### `showOptions()`
+### `showOptions()` DONE
 Since each of the three subclasses have additional options, start by overriding the `showOptions()` method to reflect the subclass-specific options for `House`, `Library`, and `Cafe`.
 
-### `goToFloor(int n)`
+### `goToFloor(int n)` DONE
 Most `Library` buildings (and some `House`s as well) have elevators, which means it is possible to move between non-adjacent floors in a single action. Override the `goToFloor(int n)` method to reflect this. 
 
 _Hint: you may want to add a `boolean` attribute to elevator-friendly classes to indicate whether or not the building has an elevator, and use this in determining whether or not a call to `goToFloor(...)` is valid._

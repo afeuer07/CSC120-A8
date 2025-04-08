@@ -1,9 +1,11 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class House extends Building implements HouseRequirements {
 
   private ArrayList<Student> residents;
   private boolean hasDiningRoom;
+  private boolean hasElevator = false; // Default no elevator
 
   /**
    * Constructor for a House
@@ -11,14 +13,27 @@ public class House extends Building implements HouseRequirements {
    * @param address String address of the building
    * @param floors int number of floors in the building
    * @param dr Boolean, true if the house has a dining room
+   * @param e boolean, true if the house has an elevator
    */
-  public House(String name, String address, int floors, boolean dr) {
+  public House(String name, String address, int floors, boolean dr, boolean e) {
     super(name, address, floors);
     
     residents = new ArrayList<Student>();
     hasDiningRoom = dr;
+    hasElevator = e;
     
     System.out.println("You have built a house!");
+  }
+
+  /**
+   * Constructor for a House with no elevator boolean
+   * @param name String name of the building
+   * @param address String address of the building
+   * @param floors int number of floors in the building
+   * @param dr Boolean, true if the house has a dining room
+   */
+  public House(String name, String address, int floors, boolean dr) {
+    this(name, address, floors, dr, false); // Call full constructor with elevator set to false
   }
 
   /**
@@ -47,6 +62,16 @@ public class House extends Building implements HouseRequirements {
   }
 
   /**
+   * Adds a list of students to the residents list
+   * @param s ArrayList of Students
+   */
+  public void moveIn(ArrayList<Student> s){
+    for (Student student : s) {
+      residents.add(student);
+    }
+  }
+
+  /**
    * Removes a student from the residents list
    * @param s Student
    * @return the student that moved out
@@ -57,7 +82,21 @@ public class House extends Building implements HouseRequirements {
       return s;
     }
     return null;
-    
+  }
+
+  /**
+   * Removes a list of students from the residents list
+   * @param s ArrayList of Students
+   * @return the student(s) that moved out
+   */
+  public Student moveOut(ArrayList<Student> s){
+    for (Student student : s) {
+      if (isResident(student)) {
+        residents.remove(student);
+        return student;
+      }
+    }
+    return null;
   }
 
   /**
@@ -73,9 +112,38 @@ public class House extends Building implements HouseRequirements {
     }
   }
 
+  /**
+   * Prints user options for the House class
+   */
+  public void showOptions(){
+    super.showOptions();
+    //might need to remove goToFloor() if House doesn't have an elevator
+    System.out.println("moveIn()\n moveOut()\n isResident()\n nResidents()\n hasDiningRoom()\n");
+
+  }
+
+  /**
+   * Allows movement between all floors in a House with an elevator
+   * @param floorNum int number of the floor to go to
+   * @throws RuntimeException if the House does not have an elevator or if the user is not inside the House, or if desired floor doesn't exist
+   */
+  public void goToFloor(int floorNum) {
+    if(this.hasElevator == false) {
+      throw new RuntimeException("This House does not have an elevator. Cannot go to floor #" + floorNum + ".");
+    }
+    if (this.activeFloor == -1) {
+      throw new RuntimeException("You are not inside this House. Must call enter() before navigating between floors.");
+    }
+    if (floorNum < 1 || floorNum > this.nFloors) {
+      throw new RuntimeException("Invalid floor number. Valid range for this House is 1-" + this.nFloors +".");
+    }
+    System.out.println("You are now on floor #" + floorNum + " of " + this.name);
+    this.activeFloor = floorNum;
+  }
+
 
   public static void main(String[] args) {
-    House myHouse = new House("Maple House", "123 College St", 3, true);
+    House myHouse = new House("Hubbard House", "3 Green Sreet", 4, false, false);
 
     // Create Student objects
     Student s1 = new Student("Alice", "99xxxxxx1", 20);

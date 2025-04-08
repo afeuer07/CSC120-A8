@@ -1,4 +1,6 @@
+import java.lang.reflect.Array;
 import java.util.Hashtable;
+import java.util.ArrayList;
 public class Library extends Building implements LibraryRequirements{
 
   private Hashtable<String, Boolean> collection;
@@ -25,6 +27,16 @@ public class Library extends Building implements LibraryRequirements{
   }
 
   /**
+   * adds multiple titles to the collection
+   * @param titles ArrayList of book's title and author
+   */
+  public void addTitle(ArrayList<String> titles){
+    for (String title : titles){
+      collection.put(title, true);
+    }
+  }
+
+  /**
    * removes book from collection
    * @param title book to be removed
    * @return book that was removed
@@ -46,6 +58,20 @@ public class Library extends Building implements LibraryRequirements{
       collection.put(title, false);
     }else{
       System.out.println("Title unavailable");
+    }
+  }
+
+  /**
+   * Changes title's value to false to check it out, if it was available
+   * @param titles ArrayList of books to be checked out
+   */
+  public void CheckOut(ArrayList<String> titles){
+    for (String title : titles){
+      if (collection.contains(title)){
+        collection.put(title, false);
+      }else{
+        System.out.println("Title unavailable");
+      }
     }
   }
 
@@ -81,6 +107,15 @@ public class Library extends Building implements LibraryRequirements{
   public void printCollection(){
     System.out.println(collection.toString());
   } 
+
+  /**
+   * prints all available options for the Library
+   */
+  public void showOptions(){
+    super.showOptions();
+    System.out.println("addTitle()\n removeTitle()\n checkOut()\n returnBook()\n containsTitle()\n isAvailable()\n printCollection()\n");
+
+  }
 
   public static void main(String[] args) {
     Library myLibrary = new Library("City Library", "456 Main St", 2);
