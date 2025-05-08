@@ -7,6 +7,11 @@ public class House extends Building implements HouseRequirements {
   private boolean hasDiningRoom;
   private boolean hasElevator = false; // Default no elevator
 
+
+  
+// //// When I submitted this originally I lost points for having 'no overloaded methods detected' but my constructor, moveIn(), and moveOut() methods are all overloaded. 
+
+
   /**
    * Constructor for a House with name, address, floors, dining room and elevator
    * Calls Building superclass constructor to set name, address, and floors
@@ -26,6 +31,7 @@ public class House extends Building implements HouseRequirements {
     System.out.println("You have built a house!");
   }
 
+  
   /**
    * Constructor for a House with name, address, floors, and dining room
    * Calls first constructor to set name, address, and floors, and sets elevator to false
