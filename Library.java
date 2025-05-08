@@ -1,4 +1,4 @@
-import java.lang.reflect.Array;
+//import java.lang.reflect.Array;
 import java.util.Hashtable;
 import java.util.ArrayList;
 public class Library extends Building implements LibraryRequirements{
@@ -54,7 +54,7 @@ public class Library extends Building implements LibraryRequirements{
    * @param title Book to be checked out
    */
   public void checkOut(String title){
-    if (collection.contains(title)){
+    if (collection.containsKey(title)){
       collection.put(title, false);
     }else{
       System.out.println("Title unavailable");
@@ -65,9 +65,9 @@ public class Library extends Building implements LibraryRequirements{
    * Changes title's value to false to check it out, if it was available
    * @param titles ArrayList of books to be checked out
    */
-  public void CheckOut(ArrayList<String> titles){
+  public void checkOut(ArrayList<String> titles){
     for (String title : titles){
-      if (collection.contains(title)){
+      if (collection.containsKey(title)){
         collection.put(title, false);
       }else{
         System.out.println("Title unavailable");
@@ -93,13 +93,18 @@ public class Library extends Building implements LibraryRequirements{
   }
 
   /**
-   * returns title's value
+   * returns title's value, prints message if not in collection
    * @param title book to check
    * @return value of the title, true if available
    */
   public boolean isAvailable(String title){
+    if (!collection.containsKey(title)) {
+      System.out.println("The title \"" + title + "\" is not in the collection.");
+      return false;
+    }
     return collection.get(title);
   }
+
 
   /**
    * prints all titles and their keys

@@ -10,7 +10,7 @@ public class Cafe extends Building implements CafeRequirements{
      * @param n String name
      * @param a String address
      */
-     Cafe(String n, String a) {
+     public Cafe(String n, String a) {
         super(n,a);
         this.nCoffeeOunces = 1600;
         this.nSugarPackets = 400;
@@ -43,7 +43,8 @@ public class Cafe extends Building implements CafeRequirements{
      * Sells a regular coffee, 12 oz, 1 sugar packet, 1 cream
      */
     public void sellCoffee(){
-        if (this.nCoffeeOunces < 12 || this.nSugarPackets < nSugarPackets || this.nCreams < nCreams || this.nCups < 1) {
+        if (this.nCoffeeOunces < 12 || this.nSugarPackets < 1 || this.nCreams < 1 || this.nCups < 1)
+ {
             restock();
             System.out.println("Restocked supplies!");
         }       
@@ -59,7 +60,7 @@ public class Cafe extends Building implements CafeRequirements{
      * Sells a coffee with 1 sugar packet and 1 cream, but allows the user to specify the size
      * @param size Ounces of coffee sold
      */
-    public void sellCofee(int size){
+    public void sellCoffee(int size){
         if (this.nCoffeeOunces < size || this.nSugarPackets < nSugarPackets || this.nCreams < nCreams || this.nCups < 1) {
             restock();
             System.out.println("Restocked supplies!");
