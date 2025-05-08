@@ -6,7 +6,9 @@ public class Cafe extends Building implements CafeRequirements{
     private int nCups; // The number of cups remaining in inventory
 
     /**
-     * Constructor for a Cafe, starts with supplies for roughly 200 cups of coffee
+     * Constructor for a Cafe, with given name and address
+     * Calls Building superclass constructor to set name and address
+     * Starts with supplies for roughly 200 cups of coffee
      * @param n String name
      * @param a String address
      */

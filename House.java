@@ -8,7 +8,8 @@ public class House extends Building implements HouseRequirements {
   private boolean hasElevator = false; // Default no elevator
 
   /**
-   * Constructor for a House
+   * Constructor for a House with name, address, floors, dining room and elevator
+   * Calls Building superclass constructor to set name, address, and floors
    * @param name String name of the building
    * @param address String address of the building
    * @param floors int number of floors in the building
@@ -26,7 +27,8 @@ public class House extends Building implements HouseRequirements {
   }
 
   /**
-   * Constructor for a House with no elevator boolean
+   * Constructor for a House with name, address, floors, and dining room
+   * Calls first constructor to set name, address, and floors, and sets elevator to false
    * @param name String name of the building
    * @param address String address of the building
    * @param floors int number of floors in the building

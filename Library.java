@@ -6,7 +6,9 @@ public class Library extends Building implements LibraryRequirements{
   private Hashtable<String, Boolean> collection;
 
   /**
-   * Constructor for a Library
+   * Constructor for a Library with name, address, and number of floors
+   * Calls Building superclass constructor to set name, address, and floors
+   * Initializes collection as an empty Hashtable
    * @param n String name
    * @param a String address
    * @param f int number of floors
