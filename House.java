@@ -136,8 +136,8 @@ public class House extends Building implements HouseRequirements {
    * @throws RuntimeException if the House does not have an elevator or if the user is not inside the House, or if desired floor doesn't exist
    */
   public void goToFloor(int floorNum) {
-    if(this.hasElevator == false) {
-      throw new RuntimeException("This House does not have an elevator. Cannot go to floor #" + floorNum + ".");
+    if(this.hasElevator == false && Math.abs(floorNum-this.activeFloor) != 1) {
+      throw new RuntimeException("This House does not have an elevator. Cannot go directly to floor #" + floorNum + ".");
     }
     if (this.activeFloor == -1) {
       throw new RuntimeException("You are not inside this House. Must call enter() before navigating between floors.");
